@@ -34,6 +34,11 @@ public class Reader {
         }
         return br;
     }
+    /**
+     * Lee un BufferedReader y lo convierte en una cadena de texto
+     * @param br BufferedReader correspondiente al archivo
+     * @return String con el contenido del archivo
+     */
     public String toHtml(BufferedReader br){
         String res="";
         try {
@@ -47,6 +52,11 @@ public class Reader {
         }
         return res;
     }
+    /**
+     * 
+     * @param url ruta de la imagen
+     * @return 
+     */
     public String readImagen(String url){
         try {
             byte[] fileContent = FileUtils.readFileToByteArray(new File(url));
