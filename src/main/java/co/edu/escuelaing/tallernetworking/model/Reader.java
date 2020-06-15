@@ -1,15 +1,14 @@
-package co.edu.escuelaing.tallernetworking;
+package co.edu.escuelaing.tallernetworking.model;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Base64;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.commons.io.FileUtils;
+
 
 /**
  * Esta clase lee un archivo dado su url
@@ -53,15 +52,17 @@ public class Reader {
         return res;
     }
     /**
-     * 
+     * Convierte una imagen a un arreglo de bytes
      * @param url ruta de la imagen
-     * @return 
+     * @return arreglo del bytes con la imagen
      */
-    public String readImagen(String url){
+    public byte[] readImagen(String url){
         try {
-            byte[] fileContent = FileUtils.readFileToByteArray(new File(url));
-            String encodedString = Base64.getEncoder().encodeToString(fileContent);
-            return encodedString;
+            File graphicResource= new File(url);
+            FileInputStream inputImage = new FileInputStream(graphicResource);
+            byte[] bytes = new byte[(int) graphicResource.length()];
+            inputImage.read(bytes);
+            return bytes;
         } catch (IOException ex) {
             Logger.getLogger(Reader.class.getName()).log(Level.SEVERE, null, ex);
             return null;
